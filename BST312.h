@@ -117,6 +117,16 @@ Postconditions: none
 
     bool isItemInTree(const ItemType& item);
 
+/****************************
+getNewNode
+
+ Function: Gets a new node
+ PreCondition: None
+ PostCondition: Returns a new node holding passed data
+****************************/
+
+TreeNode* getNewNode(int data);
+
 
 private:
     struct TreeNode {
@@ -286,6 +296,15 @@ void BST_312 <ItemType>::insertItem(TreeNode*& t, const ItemType& newItem)
 {
 
     //YOUR CODE GOES HERE
+    if(t == NULL){
+        t = getNewNode(newItem);
+        return;
+    }
+    if(newItem >  root->data)
+        insertItem(root->right,newItem);
+    else
+        insertItem(root->left,newItem);
+
 
 }
 
@@ -293,6 +312,16 @@ template<class ItemType>
 void BST_312 <ItemType>::insertItem(const ItemType& newItem)
 {
     //YOUR CODE GOES HERE
+    if(isEmpty()){
+        root=getNewNode(newItem);
+        return;
+    }
+    if(newItem > root->data){
+        insertItem(root->right,newItem);
+    }
+    else
+        insertItem(root->left,newItem);
+
 }
 
 
@@ -303,7 +332,6 @@ int BST_312 <ItemType>::countNodes(TreeNode* t) const
     //YOUR CODE GOES HERE
 
 }
-
 
 template<class ItemType>
 int BST_312 <ItemType>::countNodes()
@@ -358,4 +386,14 @@ bool BST_312 <ItemType>::isItemInTree(const ItemType& item)
   //YOUR CODE GOES HERE
 
 }
+
+template<class ItemType>
+TreeNode* getNewNode(ItemType& newItem)
+{
+    TreeNode* newNode = new TreeNode();
+    newNode->data = newItem;
+    newNode-> left = newNode->right = NULL;
+    return newNode;
+}
 #endif
+
