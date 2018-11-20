@@ -1,6 +1,6 @@
+#include "BST312.h"
 
-
-void BST312::insertItem(TreeNode*& t, const ItemType& newItem){
-
+int main(){
+    BST_312 b;
+    b.insertItem(7);
 };
-
